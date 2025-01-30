@@ -1,9 +1,9 @@
-package dependencies_jutsu
+package dependenciesJutsu
 
 import (
 	"API-HEXAGONAL/src/jutsu/application/useCaseJutsu"
 	"API-HEXAGONAL/src/jutsu/domain"
-	"API-HEXAGONAL/src/jutsu/infrastructure_jutsu/controllers"
+	"API-HEXAGONAL/src/jutsu/infrastructureJutsu/controllers"
 	"github.com/gin-gonic/gin"
 )
 

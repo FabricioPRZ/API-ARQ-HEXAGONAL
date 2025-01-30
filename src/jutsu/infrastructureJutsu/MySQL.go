@@ -1,4 +1,4 @@
-package infrastructure_jutsu
+package infrastructureJutsu
 
 import (
 	"API-HEXAGONAL/src/core"

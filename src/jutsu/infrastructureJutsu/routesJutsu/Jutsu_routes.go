@@ -1,12 +1,12 @@
-package routes_jutsu
+package routesJutsu
 
 import (
-	"API-HEXAGONAL/src/jutsu/dependencies_jutsu"
+	"API-HEXAGONAL/src/jutsu/dependenciesJutsu"
 	"github.com/gin-gonic/gin"
 )
 
 // Configura las rutas para los jutsus
-func SetupJutsuRoutes(router *gin.Engine, deps *dependencies_jutsu.JutsuDependencies) {
+func SetupJutsuRoutes(router *gin.Engine, deps *dependenciesJutsu.JutsuDependencies) {
 	// Grupo de rutas para los jutsus
 	jutsuGroup := router.Group("/v1/jutsus")
 	{
