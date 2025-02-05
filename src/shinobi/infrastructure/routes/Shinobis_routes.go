@@ -13,6 +13,7 @@ func SetupShinobiRoutes(router *gin.Engine, deps *dependencies.ShinobiDependenci
 		shinobiGroup.POST("", deps.CreateShinobiController.Run)
 		shinobiGroup.PUT("/:id", deps.UpdateShinobiController.Run)
 		shinobiGroup.GET("", deps.GetAllShinobisController)
+		shinobiGroup.GET("/:id", deps.GetByIdShinobiController)
 		shinobiGroup.DELETE("/:id", deps.DeleteShinobiController.Run)
 	}
 }
