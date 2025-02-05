@@ -8,11 +8,11 @@ import (
 
 func GetAllJutsuController(repo domain.IJutsu) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		products, err := repo.GetAllJutsus()
+		jutsus, err := repo.GetAllJutsus()
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 			return
 		}
-		c.JSON(http.StatusOK, products)
+		c.JSON(http.StatusOK, jutsus)
 	}
 }

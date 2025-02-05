@@ -8,10 +8,11 @@ import (
 )
 
 type JutsuDependencies struct {
-	CreateJutsuController *controllers.CreateJutsuController
-	UpdateJutsuController *controllers.UpdateJutsuController
-	DeleteJutsuController *controllers.DeleteJutsuController
-	GetAllJutsuController gin.HandlerFunc
+	CreateJutsuController  *controllers.CreateJutsuController
+	UpdateJutsuController  *controllers.UpdateJutsuController
+	DeleteJutsuController  *controllers.DeleteJutsuController
+	GetAllJutsuController  gin.HandlerFunc
+	GetByIdJutsuController gin.HandlerFunc
 }
 
 func NewJutsuDependencies(repo domain.IJutsu) *JutsuDependencies {
@@ -20,9 +21,10 @@ func NewJutsuDependencies(repo domain.IJutsu) *JutsuDependencies {
 	deleteJutsuUseCase := useCaseJutsu.NewDeleteJutsu(repo)
 
 	return &JutsuDependencies{
-		CreateJutsuController: controllers.NewCreateJutsuController(createJutsuUseCase),
-		UpdateJutsuController: controllers.NewUpdateJutsuController(updateJutsuUseCase),
-		DeleteJutsuController: controllers.NewDeleteJutsuController(deleteJutsuUseCase),
-		GetAllJutsuController: controllers.GetAllJutsuController(repo),
+		CreateJutsuController:  controllers.NewCreateJutsuController(createJutsuUseCase),
+		UpdateJutsuController:  controllers.NewUpdateJutsuController(updateJutsuUseCase),
+		DeleteJutsuController:  controllers.NewDeleteJutsuController(deleteJutsuUseCase),
+		GetAllJutsuController:  controllers.GetAllJutsuController(repo),
+		GetByIdJutsuController: controllers.GetByIdJutsuController(repo),
 	}
 }

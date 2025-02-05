@@ -13,6 +13,7 @@ func SetupJutsuRoutes(router *gin.Engine, deps *dependenciesJutsu.JutsuDependenc
 		jutsuGroup.POST("", deps.CreateJutsuController.Run)
 		jutsuGroup.PUT("/:id", deps.UpdateJutsuController.Run)
 		jutsuGroup.GET("", deps.GetAllJutsuController)
+		jutsuGroup.GET("/:id", deps.GetByIdJutsuController)
 		jutsuGroup.DELETE("/:id", deps.DeleteJutsuController.Run)
 	}
 }

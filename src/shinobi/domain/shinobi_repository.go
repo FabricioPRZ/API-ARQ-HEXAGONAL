@@ -7,6 +7,7 @@ import (
 type IShinobi interface {
 	SaveShinobi(name string, clan string, position string, village string, special_hability string) (int64, error)
 	GetAllShinobis() ([]entities.Shinobi, error)
+	GetShinobiById(id int32) (entities.Shinobi, error)
 	UpdateShinobi(id int32, name string, clan string, position string, village string, special_hability string) (int64, error)
 	DeleteShinobi(id int32) (int64, error)
 }

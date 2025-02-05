@@ -12,6 +12,7 @@ type ShinobiDependencies struct {
 	UpdateShinobiController  *controllers.UpdateShinobiController
 	DeleteShinobiController  *controllers.DeleteShinobiController
 	GetAllShinobisController gin.HandlerFunc
+	GetByIdShinobiController gin.HandlerFunc
 }
 
 func NewShinobiDependencies(repo domain.IShinobi) *ShinobiDependencies {
@@ -24,5 +25,6 @@ func NewShinobiDependencies(repo domain.IShinobi) *ShinobiDependencies {
 		UpdateShinobiController:  controllers.NewUpdateShinobiController(updateShinobiUseCase),
 		DeleteShinobiController:  controllers.NewDeleteShinobiController(deleteShinobiUseCase),
 		GetAllShinobisController: controllers.GetAllShinobisController(repo),
+		GetByIdShinobiController: controllers.GetByIdShinobiController(repo),
 	}
 }

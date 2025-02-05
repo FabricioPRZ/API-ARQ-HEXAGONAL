@@ -21,6 +21,13 @@ func (repo *MySQLRepository) SaveJutsu(name string, jutsu_type string, nature st
 	return result.RowsAffected, result.Error
 }
 
+// GetJutsuById recupera un jutsu específico por su ID
+func (repo *MySQLRepository) GetJutsuById(id int32) (entities.Jutsu, error) {
+	var jutsu entities.Jutsu
+	result := core.DB.Where("id_jutsu = ?", id).First(&jutsu)
+	return jutsu, result.Error
+}
+
 // GetAll recupera todos los jutsus de la base de datos
 func (repo *MySQLRepository) GetAllJutsus() ([]entities.Jutsu, error) {
 	var jutsus []entities.Jutsu

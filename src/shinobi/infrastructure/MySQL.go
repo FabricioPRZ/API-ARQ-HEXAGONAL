@@ -21,6 +21,13 @@ func (repo *MySQLRepository) SaveShinobi(name string, clan string, position stri
 	return result.RowsAffected, result.Error
 }
 
+// GetShinobiById recupera un shinobi específico por su ID
+func (repo *MySQLRepository) GetShinobiById(id int32) (entities.Shinobi, error) {
+	var shinobi entities.Shinobi
+	result := core.DB.Where("id_shinobi = ?", id).First(&shinobi)
+	return shinobi, result.Error
+}
+
 // GetAll recupera todos los shinobis de la base de datos
 func (repo *MySQLRepository) GetAllShinobis() ([]entities.Shinobi, error) {
 	var shinobis []entities.Shinobi
