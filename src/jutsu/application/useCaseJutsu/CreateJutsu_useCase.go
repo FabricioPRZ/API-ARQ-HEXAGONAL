@@ -1,17 +1,35 @@
 package useCaseJutsu
 
 import (
+	"API-HEXAGONAL/src/jutsu/application/repositories"
 	"API-HEXAGONAL/src/jutsu/domain"
+	"API-HEXAGONAL/src/jutsu/domain/entities"
+	"log"
 )
 
 type CreateJutsu struct {
-	db domain.IJutsu
+	db        domain.IJutsu
+	messaging repositories.MessageService
 }
 
-func NewCreateJutsu(db domain.IJutsu) *CreateJutsu {
-	return &CreateJutsu{db: db}
+func NewCreateJutsu(db domain.IJutsu, messaging repositories.MessageService) *CreateJutsu {
+	return &CreateJutsu{db: db, messaging: messaging}
 }
 
-func (create *CreateJutsu) Run(name string, jutsu_type string, nature string, difficulty_level string, created_by string) (int64, error) {
-	return create.db.SaveJutsu(name, jutsu_type, nature, difficulty_level, created_by)
+func (create *CreateJutsu) Run(jutsu entities.Jutsu) (entities.Jutsu, error) {
+	// Guardar el Jutsu en la base de datos
+	err := create.db.SaveJutsu(jutsu.Name, jutsu.JutsuType, jutsu.Nature, jutsu.DifficultyLevel, jutsu.CreatedBy)
+	if err != nil {
+		return entities.Jutsu{}, err
+	}
+
+	// Publicar el evento
+	err = create.messaging.PublishEvent("Jutsu creado exitosamente", jutsu)
+	if err != nil {
+		log.Printf("Error al publicar el evento del jutsu: %v", err)
+		return entities.Jutsu{}, err
+	}
+
+	// Retornar el Jutsu creado
+	return jutsu, nil
 }

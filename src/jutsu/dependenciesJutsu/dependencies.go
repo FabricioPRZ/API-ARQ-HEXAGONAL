@@ -1,6 +1,7 @@
 package dependenciesJutsu
 
 import (
+	"API-HEXAGONAL/src/jutsu/application/repositories"
 	"API-HEXAGONAL/src/jutsu/application/useCaseJutsu"
 	"API-HEXAGONAL/src/jutsu/domain"
 	"API-HEXAGONAL/src/jutsu/infrastructureJutsu/controllers"
@@ -15,8 +16,8 @@ type JutsuDependencies struct {
 	GetByIdJutsuController gin.HandlerFunc
 }
 
-func NewJutsuDependencies(repo domain.IJutsu) *JutsuDependencies {
-	createJutsuUseCase := useCaseJutsu.NewCreateJutsu(repo)
+func NewJutsuDependencies(repo domain.IJutsu, messaging repositories.MessageService) *JutsuDependencies {
+	createJutsuUseCase := useCaseJutsu.NewCreateJutsu(repo, messaging)
 	updateJutsuUseCase := useCaseJutsu.NewUpdateJutsu(repo)
 	deleteJutsuUseCase := useCaseJutsu.NewDeleteJutsu(repo)
 

@@ -15,10 +15,10 @@ func NewMySQLRepositoryJutsu() domain.IJutsu {
 }
 
 // Save almacena un nuevo jutsu en la base de datos
-func (repo *MySQLRepository) SaveJutsu(name string, jutsu_type string, nature string, difficulty_level string, created_by string) (int64, error) {
+func (repo *MySQLRepository) SaveJutsu(name string, jutsu_type string, nature string, difficulty_level string, created_by string) error {
 	jutsu := entities.Jutsu{Name: name, JutsuType: jutsu_type, Nature: nature, DifficultyLevel: difficulty_level, CreatedBy: created_by}
 	result := core.DB.Create(&jutsu)
-	return result.RowsAffected, result.Error
+	return result.Error
 }
 
 // GetJutsuById recupera un jutsu específico por su ID
